@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Richard Vogel - Creative Director</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <main class="container">
+        <section class="career-highlight">
+            <img src="https://picsum.photos/1200/400" alt="Career overview" class="hero-image">
+            <div class="career-text">
+                <h1>Richard Vogel</h1>
+                <p>[Career summary placeholder] 15+ years creating innovative gaming experiences across AAA titles and mobile platforms. Former Creative Director at Netflix Games, LucasArts, and Zynga.</p>
+            </div>
+        </section>
+        
+        <section class="mosaic-grid" id="projectsGrid"></section>
+    </main>
+
+    <script src="projects.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const grid = document.getElementById('projectsGrid');
+            
+            projects.forEach(project => {
+                const card = document.createElement('article');
+                card.className = 'project-card';
+                card.innerHTML = `
+                    <a href="#" class="project-link">
+                        <img src="${project.image}" alt="${project.title}">
+                        <div class="project-overlay">
+                            <h3>${project.title}</h3>
+                            <p>${project.placeholderText}</p>
+                        </div>
+                    </a>
+                `;
+                grid.appendChild(card);
+            });
+        });
+    </script>
+</body>
+</html>

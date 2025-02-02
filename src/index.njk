@@ -1,0 +1,27 @@
+---
+title: "Richard Vogel - Creative Director"
+layout: base.njk
+---
+
+{% block content %}
+<section class="career-highlight">
+    <img src="https://picsum.photos/1200/400" alt="Career overview" class="hero-image">
+    <div class="career-text">
+        <h1>Richard Vogel</h1>
+        <p>[Career summary placeholder] 15+ years creating innovative gaming experiences across AAA titles and mobile platforms. Former Creative Director at Netflix Games, LucasArts, and Zynga.</p>
+    </div>
+</section>
+
+<section class="mosaic-grid">
+    {% for project in projects %}
+    <article class="project-card">
+        <a href="#" class="project-link">
+            <img src="{{ project.image }}" alt="{{ project.title }}">
+            <div class="project-overlay">
+                <h3>{{ project.title }}</h3>
+            </div>
+        </a>
+    </article>
+    {% endfor %}
+</section>
+{% endblock %}
