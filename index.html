@@ -8,11 +8,17 @@
 </head>
 <body>
     <main class="container">
-        <section class="career-highlight">
+        <section class="hero-section">
+            <div class="hero-content">
+                <h1>RICH SUN</h1>
+            </div>
             <img src="https://picsum.photos/1200/400" alt="Career overview" class="hero-image">
-            <div class="career-text">
-                <h1>Richard Vogel</h1>
-                <p>[Career summary placeholder] 15+ years creating innovative gaming experiences across AAA titles and mobile platforms. Former Creative Director at Netflix Games, LucasArts, and Zynga.</p>
+        </section>
+        
+        <section class="career-description">
+            <p>Leading game development organizations focused on innovation and delight with over 25 years in the Games Industry</p>
+            <div class="button-container">
+                <a href="about.html" class="about-button">About Me</a>
             </div>
         </section>
         
@@ -24,11 +30,11 @@
         document.addEventListener('DOMContentLoaded', () => {
             const grid = document.getElementById('projectsGrid');
             
-            projects.forEach(project => {
+            projects.forEach((project, index) => {
                 const card = document.createElement('article');
                 card.className = 'project-card';
                 card.innerHTML = `
-                    <a href="#" class="project-link">
+                    <a href="project-detail.html?id=${index}" class="project-link">
                         <img src="${project.image}" alt="${project.title}">
                         <div class="project-overlay">
                             <h3>${project.title}</h3>
