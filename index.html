@@ -12,6 +12,7 @@
             height: 300px;
             overflow: hidden;
             background: #000;
+            margin-bottom: 0.5rem; 
         }
         #gameCanvas {
             width: 100%;
@@ -35,6 +36,12 @@
             font-size: 16px;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
         }
+        .section-header {
+            background-color: #000;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -46,13 +53,19 @@
 
         </section>
         
-        <section class="career-description">
-            <p>Leading game development organizations focused on innovation and delight with over 25 years in the Games Industry</p>
-            <div class="button-container">
+        <section class="career-description d-flex align-items-center">
+            <div class="button-container me-3">
                 <a href="about.html" class="about-button">About Me</a>
+            </div>
+            <div class="text-content">
+                <h2>Leading game development organizations focused on innovation and delight with over 25 years in the Games Industry</h2>
             </div>
         </section>
         
+        <section class="section-header">
+            <h1>PRODUCTS</h1>
+        </section>
+
         <section class="mosaic-grid" id="projectsGrid"></section>
     </main>
 

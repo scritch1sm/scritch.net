@@ -106,7 +106,7 @@ I was the lead programmer on this game.  But one of my highlights of this projec
     {
         title: "Escape from Monkey Island",
         image: "images/escape-from-monkey-island/main.jpg",
-        placeholderText: "Legendary point-and-click adventure sequel",
+        placeholderText: "The 4th game in the Legendary adventure game series",
         description: `The first game I ever worked on, Escape from Monkey Island was also on my first job after graduating from UC Berkeley.  It was a ton of work but some of the most fun times in my career.  The team was hilarious and great to work with, and I'm still friends with many of them more than 15 years later.  In addition to programming, I was able to write some game dialog and jokes as well as design some incidental gameplay.
 
 The game was nominated that year for best adventure game of the year at GDC.`,

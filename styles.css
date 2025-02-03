@@ -153,10 +153,11 @@ body {
 }
 
 .career-description {
-    max-width: 800px;
-    margin: 0 auto 4rem;
-    padding: 0 2rem;
-    text-align: center;
+    display: flex;
+    align-items: flex-start; /* Changed from center */
+    gap: 20px;
+    padding: 0px 0;
+    padding-bottom: 100px;
 }
 
 .career-description p {
@@ -417,11 +418,15 @@ body {
 .button-container {
     margin-top: 2rem;
     text-align: center;
+    flex-shrink: 0; /* Prevent button from shrinking */
 }
 
 .about-button {
-    display: inline-block;
-    padding: 1rem 2.5rem;
+    display: inline-flex;
+    align-items: center;
+    height: 44px;
+    padding: 10px 25px;
+
     font-size: 1.125rem;
     font-weight: 500;
     color: white;
@@ -430,6 +435,8 @@ body {
     text-decoration: none;
     transition: all 0.3s ease;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    white-space: nowrap; /* Keep button text on one line */
+
 }
 
 .about-button:hover {
@@ -477,6 +484,17 @@ body {
     background: #f8fafc;
     border-radius: 12px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.text-content {
+    flex-grow: 1; /* Allow text to take remaining space */
+}
+
+.text-content h2 {
+    margin: 0;
+    line-height: 1.6;
+    position: relative;
+    top: 25px; /* Fine-tune text vertical position */
 }
 
 .social-links h2 {
@@ -581,4 +599,21 @@ body {
         width: 100%;
         justify-content: center;
     }
+}
+
+/* Section Header */
+.section-header {
+    background-color: #000;
+    color: #fff;
+    padding: 1rem 0;
+    margin: 2rem 0;
+}
+
+.section-header h1 {
+    margin: 0;
+    font-size: 2rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-align: center;
+    text-transform: uppercase;
 }
