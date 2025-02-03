@@ -9,7 +9,7 @@
         .hero-section {
             position: relative;
             width: 100%;
-            height: 400px;
+            height: 300px;
             overflow: hidden;
             background: #000;
         }
@@ -42,7 +42,7 @@
         <section class="hero-section">
             <canvas id="gameCanvas"></canvas>
             <div id="richSunText">RICH SUN</div>
-            <div id="controlsText">Keys: W, S to move, Enter to shoot</div>
+            <div id="controlsText">Keys: WSAD to move, Enter to shoot</div>
 
         </section>
         
@@ -75,16 +75,76 @@
             y: canvas.height / 2,
             width: 40,
             height: 20,
-            speed: 5,
+            speed: 3,
             color: '#4CAF50',
             lastShootTime: 0,
-            shootCooldown: 200
+            shootCooldown: 200,
+            alive: true,
+            respawnTime: 0,
+            respawnDelay: 1500,
+            score: 0
         };
 
         const bullets = [];
         const enemies = [];
         const stars = [];
+        const particles = [];
         let scrollX = 0;
+
+        // Particle class
+        class Particle {
+            constructor(x, y, color, basespeed) {
+                this.x = x;
+                this.y = y;
+                this.color = color;
+                this.size = (Math.random() * 3 + 2)* basespeed/8;
+                this.speedX = (Math.random() - 0.5) * basespeed;
+                this.speedY = (Math.random() - 0.5) * basespeed;
+                this.life = 1.0 * basespeed/8; // Life from 1 to 0
+                this.decay = Math.random() * 0.02 + 0.02; // Random decay rate
+            }
+
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                this.life -= this.decay;
+                this.speedX *= 0.98; // Slow down over time
+                this.speedY *= 0.98;
+            }
+
+            draw(ctx) {
+                ctx.fillStyle = `rgba(${this.color}, ${this.life})`;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        // Create explosion
+        function createExplosion(x, y, baseColor) {
+            const particleCount = 20;
+            const [r, g, b] = baseColor.split(',').map(n => parseInt(n));
+            
+            for (let i = 0; i < particleCount; i++) {
+                // Add ±10% random variation to each color component
+                const colorVariation = () => Math.floor(Math.random() * 80); // ±25 is ~10% of 255
+                const variedColor = `${Math.min(255, Math.max(0, r + colorVariation()))}, ${Math.min(255, Math.max(0, g + colorVariation()))}, ${Math.min(255, Math.max(0, b + colorVariation()))}`;
+                particles.push(new Particle(x, y, variedColor, 8));
+            }
+        }
+
+        // Create spang
+        function createSpang(x, y, baseColor) {
+            const particleCount = 8;
+            const [r, g, b] = baseColor.split(',').map(n => parseInt(n));
+            
+            for (let i = 0; i < particleCount; i++) {
+                // Add ±10% random variation to each color component
+                const colorVariation = () => Math.floor(Math.random() * 80); // ±25 is ~10% of 255
+                const variedColor = `${Math.min(255, Math.max(0, r + colorVariation()))}, ${Math.min(255, Math.max(0, g + colorVariation()))}, ${Math.min(255, Math.max(0, b + colorVariation()))}`;
+                particles.push(new Particle(x, y, variedColor, 4));
+            }
+        }
 
         // Create stars for parallax background
         function createStars() {
@@ -101,6 +161,16 @@
         // Initialize enemies
         function createEnemy() {
             const y = Math.random() * (canvas.height - 40);
+            const health = Math.floor(Math.random() * 3) + 1; // Random health between 1-3
+            
+            // Color based on health (red -> purple gradient)
+            const getHealthColor = (health) => {
+                const r = Math.floor(255 - (health - 1) * 30);
+                const g = 20;
+                const b = Math.floor(128 + (health - 1) * 25);
+                return `rgb(${r}, ${g}, ${b})`;
+            };
+
             enemies.push({
                 x: canvas.width + 50,
                 y: y,
@@ -108,21 +178,57 @@
                 height: 30,
                 speed: 3,
                 pattern: Math.floor(Math.random() * 3),
+                patternspeed: Math.random() * 0.7 + 0.3,
                 angle: 0,
-                color: '#FF4081'
+                health: health,
+                startingHealth: health, // Store initial health for score calculation
+                color: getHealthColor(health),
+                getHealthColor: getHealthColor
             });
+        }
+
+        // Initialize player position
+        function resetPlayer() {
+            player.x = 100;
+            player.y = canvas.height / 2;
+            player.alive = true;
+        }
+
+        // Player death
+        function killPlayer() {
+            if (!player.alive) return; // Don't kill if already dead
+            
+            player.alive = false;
+            player.respawnTime = Date.now() + player.respawnDelay;
+            player.score = Math.max(0, player.score - 5); // Lose 5 points, but don't go below 0
+            
+            // Create a bigger explosion for player
+            createExplosion(
+                player.x + player.width / 2,
+                player.y + player.height / 2,
+                '50, 255, 50'
+            );
+            createExplosion(
+                player.x + player.width / 2,
+                player.y + player.height / 2,
+                '255, 255, 50'
+            );
         }
 
         // Game controls
         const keys = {
             up: false,
             down: false,
+            left: false,
+            right: false,
             shoot: false
         };
 
         document.addEventListener('keydown', (e) => {
             if (e.key === 'w') keys.up = true;
             if (e.key === 's') keys.down = true;
+            if (e.key === 'a') keys.left = true;
+            if (e.key === 'd') keys.right = true;
             if (e.key === 'Enter') {
                 keys.shoot = true;
             }
@@ -131,6 +237,8 @@
         document.addEventListener('keyup', (e) => {
             if (e.key === 'w') keys.up = false;
             if (e.key === 's') keys.down = false;
+            if (e.key === 'a') keys.left = false;
+            if (e.key === 'd') keys.right = false;
             if (e.key === 'Enter') keys.shoot = false;
         });
 
@@ -150,14 +258,32 @@
         function update() {
             const currentTime = Date.now();
             
-            // Move player
-            if (keys.up && player.y > 0) player.y -= player.speed;
-            if (keys.down && player.y < canvas.height - player.height) player.y += player.speed;
+            // Check for player respawn
+            if (!player.alive && currentTime >= player.respawnTime) {
+                resetPlayer();
+            }
 
-            // Auto-shoot if key is held and cooldown has passed
-            if (keys.shoot && currentTime - player.lastShootTime >= player.shootCooldown) {
-                shoot();
-                player.lastShootTime = currentTime;
+            // Only update player if alive
+            if (player.alive) {
+                // Move player
+                if (keys.up && player.y > 0) player.y -= player.speed;
+                if (keys.down && player.y < canvas.height - player.height) player.y += player.speed;
+                if (keys.left && player.x > 0) player.x -= player.speed;
+                if (keys.right && player.x < canvas.width - player.width) player.x += player.speed;
+
+                // Auto-shoot if key is held and cooldown has passed
+                if (keys.shoot && currentTime - player.lastShootTime >= player.shootCooldown) {
+                    shoot();
+                    player.lastShootTime = currentTime;
+                }
+
+                // Check collision with enemies
+                for (let i = enemies.length - 1; i >= 0; i--) {
+                    if (checkCollision(player, enemies[i])) {
+                        killPlayer();
+                        break;
+                    }
+                }
             }
 
             // Scroll background
@@ -189,10 +315,10 @@
                         break;
                     case 1: // Sine wave
                         enemy.angle += 0.05;
-                        enemy.y += Math.sin(enemy.angle) * 2;
+                        enemy.y += Math.sin(enemy.angle) * 2 * enemy.patternspeed;
                         break;
                     case 2: // Zigzag
-                        enemy.y += Math.sin(enemy.angle) * 4;
+                        enemy.y += Math.sin(enemy.angle) * 4 * enemy.patternspeed;
                         enemy.angle += 0.1;
                         break;
                 }
@@ -201,14 +327,39 @@
             }
 
             // Spawn new enemies
-            if (Math.random() < 0.02) createEnemy();
+            if (Math.random() < 0.017) createEnemy();
+
+            // Update particles
+            for (let i = particles.length - 1; i >= 0; i--) {
+                particles[i].update();
+                if (particles[i].life <= 0) {
+                    particles.splice(i, 1);
+                }
+            }
 
             // Check collisions
             for (let i = bullets.length - 1; i >= 0; i--) {
                 for (let j = enemies.length - 1; j >= 0; j--) {
                     if (checkCollision(bullets[i], enemies[j])) {
+                        enemies[j].health -= 1;
                         bullets.splice(i, 1);
-                        enemies.splice(j, 1);
+                        
+                        if (enemies[j].health <= 0) {
+                            // Add score based on enemy's starting health
+                            player.score += 2 * enemies[j].startingHealth;
+                            
+                            // Create explosion at enemy position
+                            createExplosion(
+                                enemies[j].x + enemies[j].width / 2,
+                                enemies[j].y + enemies[j].height / 2,
+                                '255, 170, 60'
+                            );
+                            enemies.splice(j, 1);
+                        } else {
+                            // Update enemy color based on new health
+                            enemies[j].color = enemies[j].getHealthColor(enemies[j].health);
+                            createSpang(enemies[j].x + enemies[j].width / 2, enemies[j].y + enemies[j].height / 2, enemies[j].color);
+                        }
                         break;
                     }
                 }
@@ -226,6 +377,8 @@
 
         // Draw ship with thrusters
         function drawPlayer() {
+            if (!player.alive) return;
+
             ctx.fillStyle = player.color;
             ctx.beginPath();
             ctx.moveTo(player.x + player.width, player.y + player.height / 2);
@@ -254,6 +407,24 @@
             // Draw player
             drawPlayer();
 
+            // Draw score
+            ctx.fillStyle = '#fff';
+            ctx.font = '20px Arial';
+            ctx.textAlign = 'right';
+            ctx.fillStyle = `rgb(122, 139, 214)`;
+            ctx.fillText(`Score: ${player.score}`, canvas.width - 20, canvas.height - 20);
+
+            // Draw respawn countdown if player is dead
+            if (!player.alive) {
+                const remainingTime = Math.ceil((player.respawnTime - Date.now()) / 1000);
+                if (remainingTime > 0) {
+                    ctx.fillStyle = '#fff';
+                    ctx.font = '20px Arial';
+                    ctx.textAlign = 'center';
+//                    ctx.fillText(`Respawning in ${remainingTime}...`, canvas.width / 2, canvas.height / 2);
+                }
+            }
+
             // Draw bullets
             bullets.forEach(bullet => {
                 ctx.fillStyle = bullet.color;
@@ -274,6 +445,11 @@
                 ctx.lineTo(enemy.x, enemy.y + enemy.height);
                 ctx.closePath();
                 ctx.fill();
+            });
+
+            // Draw particles
+            particles.forEach(particle => {
+                particle.draw(ctx);
             });
         }
 
