@@ -1,19 +1,18 @@
 const projects = [
     { 
         title: "Netflix Games",
-        image: "https://picsum.photos/400/400?random=1",
+        image: "images/netflix-games/main.jpg",
         placeholderText: "Bootstrapped Netflix's Game Studio organization as part of the founding leadership team",
         description: `Acting in a "CTO-Like" role, I joined as part of the pioneering leadership team that built the Netflix Game Studio organization from the ground up.
         
-        Over 3 years, we went from a quiet initial launch of a handful of simple mobile games as a test to a catalog games delighting milions of Netflix members on both mobile and on TVs and browsers with Netflix's cloud gaming platform.
-        
+        Working directly with Netflix VP of Gaming Mike Verdu, I helped establish the organization's technical direction, hiring practices, and studio acquisition strategy.  
         It was a joy to work with teams widely across the entire Netflix organization, from game studios I helped acquire and build anew to  Netflix product and technology teams that build the Netflix game services and cloud gaming platform`,
         productUrl: "https://www.netflix.com/games",
         gallery: [
-            "https://picsum.photos/800/600?random=101",
-            "https://picsum.photos/800/600?random=102",
-            "https://picsum.photos/800/600?random=103",
-            "https://picsum.photos/800/600?random=104"
+            "images/netflix-games/main.jpg",
+            "images/netflix-games/Cloud_Gaming_Promo_16x9_Template_v9-01b_copy.jpg",
+            "images/netflix-games/squidgame.png",
+            "images/netflix-games/AAAAQZ4p98YHzCnuJRgtUiTic0EGxTr7xKupc6LK00wq7YXVcdf22bOZmYm8SII8vUzjWsVfmbhdL4YTcO8G438t3vNgUOuGB8JMKOzCgQy0NzBvfLnlwRPvvPr37KbJPmVk2zOs-67CMjsfIelN0Vhm2YI0.jpg"
         ]
     },
     {
@@ -69,7 +68,7 @@ We also were selected as a July 2015 iOS Best New Games Featured in UK and Dutch
     {
         title: "First Wonder",
         image: "images/first-wonder/main.jpg",
-        placeholderText: "Action Adventure Prototype for a spiritual successor to Giants: Citizen Kabuto",
+        placeholderText: "A Kickstarter attempt: Action Adventure Spiritual successor to Giants: Citizen Kabuto",
         description: `First Wonder is a spiritual successor of Giants: Citizen Kabuto and MDK, straight from the mind of my Rogue Rocket co-founder Nick Bruty, the original creator of both those classic games.  We aimed to pivot towards high quality indie action gaming through crowdfunding to achieve greater control of our own financing and ultimately to create and deliver games to a community of gamers who love our style of game.
 
 Unfortunately, we weren't able to reach our goals, but we did produce a pretty cool little concept demo built in Unreal 4 that many people found pretty cool that we've now made available on a request basis on Steam.
@@ -163,12 +162,14 @@ While this idea was ahead of its time, now that we see the prevalence of social 
 `,
         productUrl: "",
         gallery: [
-            "images/tangled/main.jpg"
+            "images/tangled/main.jpg",
+            "images/tangled/SRPE4Q.png",
+            "images/tangled/s5-982ab55dd26040165635f1957f24ac8e.jpg"
         ]
     },
     {
         title: "Jackpot Gems",
-        image: "images/jackpot-gems/main.jpg",
+        image: "images/jackpot-gems/main.jpeg",
         placeholderText: "Mobile puzzle game with social features",
         description: `While running Rogue Rocket, I became intrigued by how many casino games seemed to breaking into the top 100 grossing games lists.  I didn't understand it at all, and I decided I needed to.  As a creative studio, it wasn't compatible with our spirit or mandate to simply make another casino game, but it occurred to me that mixing casino concepts with a match-3 game might be a winning combination for the target audiences.
 
@@ -177,6 +178,8 @@ The result is Jackpot Gems, which has been the game from our studio that has sho
 Given different circumstances and better capitalization, I believe Jackpot Gems could have been a strong contender for top grossing spots long term.`,
         productUrl: "http://jackpotgems.com/",
         gallery: [
+            "images/jackpot-gems/download.jpeg",
+            "images/jackpot-gems/main.jpeg"
         ]
     },
     {
@@ -189,7 +192,9 @@ Smarty Pants remains one of the most successful games that we made at Planet Moo
 `,
         productUrl: "",
         gallery: [
-            "images/smarty-pants/main.png"
+            "images/smarty-pants/main.png",
+            "images/smarty-pants/SMARTYwiiPFTfront.jpg",
+            "images/smarty-pants/smartypants-wii-screenshot4_656x369.png"
         ]
     },
     {
@@ -200,47 +205,68 @@ Smarty Pants remains one of the most successful games that we made at Planet Moo
 `,
         productUrl: "",
         gallery: [
-            "images/sushichop/main.png"
+            "images/sushichop/main.png",
+            "images/sushichop/SushiChop3.jpg"
         ]
     },
     {
         title: "Dead on Delivery",
-        image: "https://picsum.photos/400/400?random=14",
+        image: "images/dead-on-delivery/main.png",
         placeholderText: "Zombie delivery simulator game",
         description: `Dead on Delivery was a self funded game that was an experimental product at Rogue Rocket that wanted to see if we could marry some equipment collection mechanics to a relatively simple portrait mode mobile action game.  The result was that we ended up with a game that was super engaging, but for too small of a target audience.  Everybody either bounced out of the tutorial or first couple levels, or played everything through.  Ultimately it was a great little experiment that successfully reused some code from previous projects, and gave us a measurable result.`,
-        productUrl: ""
+        productUrl: "",
+        gallery: [
+            "images/dead-on-delivery/main.png",
+            "images/dead-on-delivery/marketing3_playhaven_1000x800+(1).png",
+            "images/dead-on-delivery/unnamed+(1).png",
+            "images/dead-on-delivery/unnamed.jpg"
+        ]
     },
     {
         title: "Throne Together",
-        image: "https://picsum.photos/400/400?random=15",
+        image: "images/throne-together/main.jpg",
         placeholderText: "Solve castle-building puzzles with Tetris-like mechanics",
         description: `Throne Together (or as we lovingly liked to refer to it internally at Rogue Rocket, "Ugly Castle") is a puzzle game with a novel extension of Tetris-like mechanics that you use to build teetering castles.  Unbalancing the weight would cause base structures to crack and break.  The concept was something I came up with and prototyped before signing with Microsoft on a publishing deal for their Windows Phone and Windows App Store platforms.  I still feel the concept is pretty novel and would like to revisit it again some day in a different context.
 
 `,
-        productUrl: ""
+        productUrl: "",
+        gallery: [
+            "images/throne-together/main.jpg",
+            "images/throne-together/THRONE_TOGETHER_DLCArt_626x469.png",
+            "images/throne-together/thronetogether_01.jpg"
+        ]
     },
     {
         title: "Infected (mobile)", 
-        image: "https://picsum.photos/400/400?random=16",
+        image: "images/infected-mobile/main.jpg",
         placeholderText: "Mobile version of popular zombie shooter",
         description: `The mobile incarnation of Infected is a mobile F2P multiplayer take on the Infected IP from the Planet Moon PSP game we worked on.  We inherited the IP when we started Rogue Rocket and this was our first game that we pitched to and got signed with Glu Mobile.  It was an evolution of tower defense games, but with the same idea of infected people through PvP play.  The core game was really fun and the real time play on mobile with the backend services was challenging, but ultimately the approach to free to play that we adopted from Glu during that time period didn't work out in this type of game.  As our first foray into mobile free to play, it served as an excellent starting point for the studio and educated us a lot into future endeavors.
 `,
-        productUrl: ""
+        productUrl: "",
+        gallery: [
+            "images/infected-mobile/main.jpg",
+            "images/infected-mobile/infected-splash1.png",
+            "images/infected-mobile/unnamed-8.jpg"
+        ]
     },
     {
         title: "Sam & Max 2",
-        image: "https://picsum.photos/400/400?random=17",
+        image: "images/sam-max-2/main.jpg",
         placeholderText: "A tragically unreleased sequel to the beloved hilarious adventure game",
         description: `The LucasArts sequel to the beloved original adventure game never made it to market.  However, it's said that its cancellation was delayed because what we were building was so damn good and they gave it additional consideration, ultimately buckling under the weight of the belief that adventure games had no market validity any longer.  
 
 Much of the team I worked with on this game went on to be founding members of Telltale Games, where they've used the same core concepts to become the kings of modern adventure gaming for the last decade.  I worked under Kevin Bruner as an engineer on this project who is still the CEO of Telltale today.
 
 `,
-        productUrl: ""
+        productUrl: "",
+        gallery: [
+            "images/sam-max-2/main.jpg",
+            "images/sam-max-2/title.jpg"
+        ]
     },
     {
         title: "RTX: Red Rock",
-        image: "https://picsum.photos/400/400?random=18",
+        image: "images/rtx-red-rock/main.jpg",
         placeholderText: "Early FPS pioneer for PC gaming",
         description: `I've probably never worked harder on a project than on RTX at LucasArts.  For a while I did a long series of 90-120 hr work weeks.  Unfortunately, this didn't result in a great game, but in the end I learned an enormous amount on my second professional game project.  Lead programmer Eric Johnston had enough faith in me to give me ownership over the AI and visual FX systems for the entire game.  While in retrospect, this was way more work than 1 engineer probably should tackle on his own, it was really quite fun and educational, and I'm grateful that Eric allowed me to tackle it.
 
@@ -251,10 +277,8 @@ It's also nice that despite a scathing review, Gamespot took a sentence to call 
 `,
         productUrl: "",
         gallery: [
-            "https://picsum.photos/800/600?random=1801",
-            "https://picsum.photos/800/600?random=1802",
-            "https://picsum.photos/800/600?random=1803",
-            "https://picsum.photos/800/600?random=1804",
+            "images/rtx-red-rock/main.jpg",
+            "images/rtx-red-rock/31314-rtx-red-rock-playstation-2-front-cover.jpg"
         ]
     }
 ];
