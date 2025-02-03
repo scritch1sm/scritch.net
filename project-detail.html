@@ -4,7 +4,97 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Project Detail - Richard Vogel</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <style>
+        #imageModal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 9999;
+            padding: 20px;
+        }
+        #imageModal .modal-dialog {
+            position: relative;
+            width: 100%;
+            height: 95vh;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        #imageModal .modal-content {
+            background: none;
+            border: none;
+            height: auto;
+            width: fit-content;
+            margin: 0 auto;
+            position: relative;
+        }
+        #imageModal .modal-body {
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: auto;
+            width: 100%;
+            text-align: center;
+        }
+        #imageModal .modal-body img {
+            max-height: 90vh;
+            max-width: 95vw;
+            object-fit: contain;
+            margin: 0 auto;
+            display: block;
+        }
+    /* Add transition override */
+    #imageModal.modal.fade .modal-dialog {
+        transform: none !important;
+    }
+    
+    /* Force immediate positioning */
+    #imageModal .modal-header {
+        transition: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+    }
+    
+    /* Adjust positioning */
+    #imageModal .modal-header {
+        position: fixed;
+        top: 20px !important;
+        right: 20px !important;
+        z-index: 9999;
+        margin: 0;
+        padding: 0;
+        border: none;
+        background: none;
+    }  
+        #imageModal .btn-close {
+        width: 40px;
+        height: 40px;
+        padding: 10px;
+        background: white url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000'%3e%3cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/%3e%3c/svg%3e") center/1.5em auto no-repeat;
+        border-radius: 50%;
+        box-shadow: 0 0 15px rgba(0,0,0,0.3);
+        opacity: 0.9;
+        transition: all 0.2s ease;
+        }   
+        #imageModal .btn-close:hover {
+        opacity: 1;
+        transform: scale(1.1);
+        }
+        .gallery-img {
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .gallery-img:hover {
+            transform: scale(1.02);
+        }
+    </style>
 </head>
 <body>
     <main class="container">
@@ -24,6 +114,21 @@
         </div>
     </main>
 
+    <!-- Image Modal -->
+    <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true" data-bs-backdrop="static">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <img id="modalImage" src="" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="projects.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -55,13 +160,45 @@
                     `;
                 }
                 
-                // Create gallery
+                // Create gallery with modal support
                 const galleryGrid = document.getElementById('galleryGrid');
+                const imageModal = new bootstrap.Modal(document.getElementById('imageModal'), {
+                    backdrop: 'static',
+                    keyboard: true
+                });
+                const modalImage = document.getElementById('modalImage');
+                const closeButton = document.querySelector('#imageModal .btn-close');
+
+                // Add click event for close button
+                closeButton.addEventListener('click', () => {
+                    imageModal.hide();
+                });
+
+                // Add click event for modal backdrop
+                document.getElementById('imageModal').addEventListener('click', (e) => {
+                    if (e.target.id === 'imageModal') {
+                        imageModal.hide();
+                    }
+                });
+
+                // Add keyboard support for closing modal
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape') {
+                        imageModal.hide();
+                    }
+                });
+
                 if (project.gallery && project.gallery.length > 0) {
                     project.gallery.forEach(src => {
                         const img = document.createElement('img');
                         img.src = src;
                         img.alt = `${project.title} screenshot`;
+                        img.classList.add('gallery-img');
+                        img.addEventListener('click', () => {
+                            modalImage.src = src;
+                            modalImage.alt = img.alt;
+                            imageModal.show();
+                        });
                         galleryGrid.appendChild(img);
                     });
                 }

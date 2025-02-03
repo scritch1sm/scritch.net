@@ -6,7 +6,10 @@ const projects = [
         description: `Acting in a "CTO-Like" role, I joined as part of the pioneering leadership team that built the Netflix Game Studio organization from the ground up.
         
         Working directly with Netflix VP of Gaming Mike Verdu, I helped establish the organization's technical direction, hiring practices, and studio acquisition strategy.  
-        It was a joy to work with teams widely across the entire Netflix organization, from game studios I helped acquire and build anew to  Netflix product and technology teams that build the Netflix game services and cloud gaming platform`,
+        It was a joy to work with teams widely across the entire Netflix organization, from game studios I helped acquire and build anew to  Netflix product and technology teams that build the Netflix game services and cloud gaming platform.
+        
+        Most recently, I chose to focus more narrowly on leading a team whose mission is to explore what new kinds of games are made possible through powering games with emerging AI capabilities, with a creative and player-first focus.
+        `,
         productUrl: "https://www.netflix.com/games",
         gallery: [
             "images/netflix-games/main.jpg",
@@ -47,6 +50,22 @@ My time after was spent helping the company with various management challenges r
         ]
     },
     {
+        title: "First Wonder",
+        image: "images/first-wonder/main.jpg",
+        placeholderText: "A Kickstarter attempt: Action Adventure Spiritual successor to Giants: Citizen Kabuto",
+        description: `First Wonder is a spiritual successor of Giants: Citizen Kabuto and MDK, straight from the mind of my Rogue Rocket co-founder Nick Bruty, the original creator of both those classic games.  We aimed to pivot towards high quality indie action gaming through crowdfunding to achieve greater control of our own financing and ultimately to create and deliver games to a community of gamers who love our style of game.
+
+Unfortunately, we weren't able to reach our goals, but we did produce a pretty cool little concept demo built in Unreal 4 that many people found pretty cool that we've now made available on a request basis on Steam.
+
+Through this experience, we also learned a ton about things like influencer networks (like Twitch), presentation, and marketing.  And though engaging in these areas, found ourselves connecting to a ton of interesting people that we wouldn't have otherwise.
+`,
+        productUrl: "",
+        gallery: [
+            "images/first-wonder/main.jpg",
+            "images/first-wonder/First-Wonder-New-Screenshot1.png"
+        ]
+    },
+    {
         title: "Gunpowder",
         image: "images/gunpowder/main.png",
         placeholderText: "A physics puzzle game with an innovative touch mechanic",
@@ -63,22 +82,6 @@ We also were selected as a July 2015 iOS Best New Games Featured in UK and Dutch
         gallery: [
             "images/gunpowder/main.png",
             "images/gunpowder/2_minecart.png"
-        ]
-    },
-    {
-        title: "First Wonder",
-        image: "images/first-wonder/main.jpg",
-        placeholderText: "A Kickstarter attempt: Action Adventure Spiritual successor to Giants: Citizen Kabuto",
-        description: `First Wonder is a spiritual successor of Giants: Citizen Kabuto and MDK, straight from the mind of my Rogue Rocket co-founder Nick Bruty, the original creator of both those classic games.  We aimed to pivot towards high quality indie action gaming through crowdfunding to achieve greater control of our own financing and ultimately to create and deliver games to a community of gamers who love our style of game.
-
-Unfortunately, we weren't able to reach our goals, but we did produce a pretty cool little concept demo built in Unreal 4 that many people found pretty cool that we've now made available on a request basis on Steam.
-
-Through this experience, we also learned a ton about things like influencer networks (like Twitch), presentation, and marketing.  And though engaging in these areas, found ourselves connecting to a ton of interesting people that we wouldn't have otherwise.
-`,
-        productUrl: "",
-        gallery: [
-            "images/first-wonder/main.jpg",
-            "images/first-wonder/First-Wonder-New-Screenshot1.png"
         ]
     },
     {
@@ -203,7 +206,7 @@ Smarty Pants remains one of the most successful games that we made at Planet Moo
         placeholderText: "Slicing your way to sushi glory",
         description: `Initially just a tiny game whose purpose was to learn to ship our first mobile game at Rogue Rocket, it became a surprise hit and we peaked at #7 of all US free apps.  It was simply meant to introduce some new game mechanic dimensions to the clever touch-perfect gameplay pioneered by Fruit Ninja.  The original version was built by Nick and myself in 1 month, simply to prove to ourselves we could do it.
 `,
-        productUrl: "",
+        productUrl: "https://www.sushichop.com/",
         gallery: [
             "images/sushichop/main.png",
             "images/sushichop/SushiChop3.jpg"
@@ -229,7 +232,7 @@ Smarty Pants remains one of the most successful games that we made at Planet Moo
         description: `Throne Together (or as we lovingly liked to refer to it internally at Rogue Rocket, "Ugly Castle") is a puzzle game with a novel extension of Tetris-like mechanics that you use to build teetering castles.  Unbalancing the weight would cause base structures to crack and break.  The concept was something I came up with and prototyped before signing with Microsoft on a publishing deal for their Windows Phone and Windows App Store platforms.  I still feel the concept is pretty novel and would like to revisit it again some day in a different context.
 
 `,
-        productUrl: "",
+        productUrl: "https://www.microsoft.com/en-us/p/throne-together/9wzdncrfjb6l",
         gallery: [
             "images/throne-together/main.jpg",
             "images/throne-together/THRONE_TOGETHER_DLCArt_626x469.png",
