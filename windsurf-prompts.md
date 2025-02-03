@@ -1,4 +1,4 @@
-# Windsurf Session Prompts
+# Windsurf Session Prompts (these are incomplete and summarized to a pretty reductive level, used only for my own reference)
 
 1. "I need help with my portfolio website"
 
