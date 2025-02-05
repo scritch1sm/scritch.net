@@ -392,13 +392,22 @@
         function drawPlayer() {
             if (!player.alive) return;
 
-            ctx.fillStyle = player.color;
+            ctx.fillStyle = player.color + '73';
             ctx.beginPath();
             ctx.moveTo(player.x + player.width, player.y + player.height / 2);
             ctx.lineTo(player.x, player.y);
             ctx.lineTo(player.x, player.y + player.height);
             ctx.closePath();
             ctx.fill();
+
+            ctx.beginPath();
+            ctx.moveTo(player.x + player.width, player.y + player.height / 2);
+            ctx.lineTo(player.x, player.y);
+            ctx.lineTo(player.x, player.y + player.height);
+            ctx.closePath();
+            ctx.strokeStyle = player.color;
+            ctx.stroke();
+
 
             // Thrusters
             ctx.fillStyle = '#FF6B6B';
